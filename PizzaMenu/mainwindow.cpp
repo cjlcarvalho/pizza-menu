@@ -58,12 +58,10 @@ void MainWindow::preparePizza()
 
     Component *component = new Pizza;
 
-    if (ui->selected->count()) {
-        for (int i = 0; i < ui->selected->count(); i++) {
-            Decorator *decorator = m_decorators[ui->selected->item(i)->text()]->clone();
-            decorator->setDecorated(component);
-            component = decorator;
-        }
+    for (int i = 0; i < ui->selected->count(); i++) {
+        Decorator *decorator = m_decorators[ui->selected->item(i)->text()]->clone();
+        decorator->setDecorated(component);
+        component = decorator;
     }
 
     message.setText(component->preparar());
