@@ -15,6 +15,7 @@ class BORDARECHEADASHARED_EXPORT BordaRecheada : public Decorator
 public:
     BordaRecheada(Component *decorated = nullptr);
     QString preparar();
+    Decorator *clone();
 
 private:
     QString rechear();

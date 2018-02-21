@@ -38,15 +38,17 @@ void MainWindow::moveToRight()
     int currentRow = ui->selectable->currentRow();
 
     if (currentRow != -1)
-        ui->selected->addItem(ui->selectable->takeItem(currentRow));
+        ui->selected->addItem(ui->selectable->item(currentRow)->text());
 }
 
 void MainWindow::moveToLeft()
 {
     int currentRow = ui->selected->currentRow();
 
-    if (currentRow != -1)
-        ui->selectable->addItem(ui->selected->takeItem(currentRow));
+    if (currentRow != -1) {
+        QListWidgetItem *item = ui->selected->takeItem(currentRow);
+        delete item;
+    }
 }
 
 void MainWindow::preparePizza()
@@ -60,7 +62,7 @@ void MainWindow::preparePizza()
 
     if (ui->selected->count()) {
         for (int i = 0; i < ui->selected->count(); i++) {
-            Decorator *decorator = m_decorators[ui->selected->item(i)->text()];
+            Decorator *decorator = m_decorators[ui->selected->item(i)->text()]->clone();
             decorator->setDecorated(component);
             component = decorator;
         }

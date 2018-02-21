@@ -15,6 +15,7 @@ class PIZZACORESHARED_EXPORT Decorator : public Component
 public:
     void setDecorated(Component *decorated);
     virtual QString preparar();
+    virtual Decorator *clone() = 0;
 
 protected:
     Decorator(Component *decorated = nullptr);

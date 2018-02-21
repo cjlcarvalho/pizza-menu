@@ -15,3 +15,8 @@ QString BordaRecheada::rechear()
 {
     return " com borda recheada";
 }
+
+Decorator *BordaRecheada::clone()
+{
+    return new BordaRecheada(nullptr);
+}
