@@ -25,10 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    pluginloader.cpp \
+    pizza.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    pluginloader.h \
+    pizza.h
 
 FORMS += \
         mainwindow.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../pizza_lib/release/ -lPizzaCore
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../pizza_lib/debug/ -lPizzaCore
+else:unix: LIBS += -L$$PWD/../pizza_lib/ -lPizzaCore
+
+INCLUDEPATH += $$PWD/../pizza_lib
+DEPENDPATH += $$PWD/../pizza_lib

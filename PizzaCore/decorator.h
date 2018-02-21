@@ -3,14 +3,26 @@
 
 #include "component.h"
 
-class Decorator : public Component
+#include "pizzacore_global.h"
+
+#include <QObject>
+#include <QtPlugin>
+
+class PIZZACORESHARED_EXPORT Decorator : public Component
 {
+    Q_OBJECT
+
+public:
+    void setDecorated(Component *decorated);
+    virtual QString preparar();
+
 protected:
-    Decorator(Component *decorated);
-    QString preparar();
+    Decorator(Component *decorated = nullptr);
 
 private:
     Component *m_decorated;
 };
+
+Q_DECLARE_INTERFACE(Decorator, "org.qt-project.PizzaCore.Decorator")
 
 #endif // DECORATOR_H

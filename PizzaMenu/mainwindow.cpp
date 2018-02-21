@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "pluginloader.h"
+#include "pizza.h"
 
 #include <QMessageBox>
 
@@ -13,9 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
     setMinimumSize(400, 300);
     setMaximumSize(400, 300);
 
-    ui->selectable->addItem("Calabresa");
-    ui->selectable->addItem("Borda Recheada");
-    ui->selectable->addItem("Acarajé");
+    m_pluginLoader = new PluginLoader;
+
+    for (Decorator *decorator : m_pluginLoader->decorators()) {
+        m_decorators.insert(decorator->metaObject()->className(), decorator);
+        ui->selectable->addItem(decorator->metaObject()->className());
+    }
 
     connect(ui->moveRightButton, &QPushButton::released, this, &MainWindow::moveToRight);
     connect(ui->moveLeftButton, &QPushButton::released, this, &MainWindow::moveToLeft);
@@ -48,13 +53,19 @@ void MainWindow::preparePizza()
     QMessageBox message;
     message.setWindowTitle("Pizza preparada!");
 
-    QString result("Pizza básica");
+    QString result;
 
-    if (ui->selected->count())
-        for (int i = 0; i < ui->selected->count(); i++)
-            result += "\ncom " + ui->selected->item(i)->text();
+    Component *component = new Pizza;
 
-    message.setText(result);
+    if (ui->selected->count()) {
+        for (int i = 0; i < ui->selected->count(); i++) {
+            Decorator *decorator = m_decorators[ui->selected->item(i)->text()];
+            decorator->setDecorated(component);
+            component = decorator;
+        }
+    }
+
+    message.setText(component->preparar());
 
     message.exec();
 }

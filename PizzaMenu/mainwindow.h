@@ -1,11 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "../PizzaCore/decorator.h"
+
 #include <QMainWindow>
+#include <QMap>
 
 namespace Ui {
 class MainWindow;
 }
+
+class PluginLoader;
 
 class MainWindow : public QMainWindow
 {
@@ -22,6 +27,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    PluginLoader *m_pluginLoader;
+    QMap<QString, Decorator *> m_decorators;
 };
 
 #endif // MAINWINDOW_H

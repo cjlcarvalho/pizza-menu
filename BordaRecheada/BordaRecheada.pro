@@ -1,16 +1,17 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-02-21T03:07:02
+# Project created by QtCreator 2018-02-21T04:01:00
 #
 #-------------------------------------------------
 
 QT       -= gui
 
-TARGET = PizzaCore
+TARGET = bordarecheada
 TEMPLATE = lib
+CONFIG += plugin
 
-DEFINES += PIZZACORE_LIBRARY
-DESTDIR = ../pizza_lib
+DEFINES += BORDARECHEADA_LIBRARY
+DESTDIR = ../decorators
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -24,15 +25,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        component.cpp \
-        decorator.cpp
+        bordarecheada.cpp
 
 HEADERS += \
-        pizzacore_global.h \
-        component.h \
-        decorator.h
+        bordarecheada.h \
+        bordarecheada_global.h 
+
+DISTFILES += bordarecheada.json
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../pizza_lib/release/ -lPizzaCore
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../pizza_lib/debug/ -lPizzaCore
+else:unix: LIBS += -L$$PWD/../pizza_lib/ -lPizzaCore
+
+INCLUDEPATH += $$PWD/../pizza_lib
+DEPENDPATH += $$PWD/../pizza_lib
