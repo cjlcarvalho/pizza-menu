@@ -56,8 +56,6 @@ void MainWindow::preparePizza()
     QMessageBox message;
     message.setWindowTitle("Pizza preparada!");
 
-    QString result;
-
     Component *component = new Pizza;
 
     if (ui->selected->count()) {
