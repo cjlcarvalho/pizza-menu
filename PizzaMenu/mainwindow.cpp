@@ -4,6 +4,7 @@
 #include "pizza.h"
 
 #include <QMessageBox>
+#include <QMetaClassInfo>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,8 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_pluginLoader = new PluginLoader;
 
     for (Decorator *decorator : m_pluginLoader->decorators()) {
-        m_decorators.insert(decorator->metaObject()->className(), decorator);
-        ui->selectable->addItem(decorator->metaObject()->className());
+        m_decorators.insert(decorator->metaObject()->classInfo(0).value(), decorator);
+        ui->selectable->addItem(decorator->metaObject()->classInfo(0).value());
     }
 
     connect(ui->moveRightButton, &QPushButton::released, this, &MainWindow::moveToRight);
