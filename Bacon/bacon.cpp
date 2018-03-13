@@ -1,7 +1,6 @@
 #include "bacon.h"
 
-Bacon::Bacon(Component *decorated) :
-    Decorator(decorated)
+Bacon::Bacon()
 {
 }
 
@@ -13,7 +12,7 @@ QString Bacon::preparar()
 
 Decorator *Bacon::clone()
 {
-    return new Bacon(nullptr);
+    return new Bacon;
 }
 
 QString Bacon::encherDeBacon()

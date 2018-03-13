@@ -1,7 +1,6 @@
 #include "cafe.h"
 
-Cafe::Cafe(Component *decorated) :
-    Decorator(decorated)
+Cafe::Cafe()
 {
 
 }
@@ -14,7 +13,7 @@ QString Cafe::preparar()
 
 Decorator *Cafe::clone()
 {
-    return new Cafe(nullptr);
+    return new Cafe;
 }
 
 QString Cafe::colocarCafe()

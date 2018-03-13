@@ -1,7 +1,6 @@
 #include "bordarecheada.h"
 
-BordaRecheada::BordaRecheada(Component *decorated) :
-    Decorator(decorated)
+BordaRecheada::BordaRecheada()
 {
 }
 
@@ -18,5 +17,5 @@ QString BordaRecheada::rechear()
 
 Decorator *BordaRecheada::clone()
 {
-    return new BordaRecheada(nullptr);
+    return new BordaRecheada;
 }

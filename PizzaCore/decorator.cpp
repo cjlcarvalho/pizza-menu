@@ -1,11 +1,5 @@
 #include "decorator.h"
 
-Decorator::Decorator(Component *decorated) :
-    m_decorated(decorated)
-{
-
-}
-
 void Decorator::setDecorated(Component *decorated)
 {
     m_decorated = decorated;

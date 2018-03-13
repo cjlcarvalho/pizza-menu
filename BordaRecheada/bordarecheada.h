@@ -13,7 +13,7 @@ class BORDARECHEADASHARED_EXPORT BordaRecheada : public Decorator
     Q_PLUGIN_METADATA(IID "org.qt-project.bordarecheada.BordaRecheada")
 
 public:
-    BordaRecheada(Component *decorated = nullptr);
+    BordaRecheada();
     QString preparar();
     Decorator *clone();
 

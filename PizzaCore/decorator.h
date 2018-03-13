@@ -17,9 +17,6 @@ public:
     virtual QString preparar();
     virtual Decorator *clone() = 0;
 
-protected:
-    Decorator(Component *decorated = nullptr);
-
 private:
     Component *m_decorated;
 };

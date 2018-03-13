@@ -13,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("Pizza");
-    setMinimumSize(400, 300);
-    setMaximumSize(400, 300);
 
     m_pluginLoader = new PluginLoader;
 
@@ -23,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->selectable->addItem(decorator->metaObject()->classInfo(0).value());
     }
 
-    connect(ui->moveRightButton, &QPushButton::released, this, &MainWindow::moveToRight);
-    connect(ui->moveLeftButton, &QPushButton::released, this, &MainWindow::moveToLeft);
-    connect(ui->preparePizzaButton, &QPushButton::released, this, &MainWindow::preparePizza);
+    connect(ui->moveRightButton, &QPushButton::clicked, this, &MainWindow::moveToRight);
+    connect(ui->moveLeftButton, &QPushButton::clicked, this, &MainWindow::moveToLeft);
+    connect(ui->preparePizzaButton, &QPushButton::clicked, this, &MainWindow::preparePizza);
 }
 
 MainWindow::~MainWindow()

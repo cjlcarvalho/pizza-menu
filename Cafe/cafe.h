@@ -13,7 +13,7 @@ class CAFESHARED_EXPORT Cafe : public Decorator
     Q_PLUGIN_METADATA(IID "org.qt-project.cafe.Cafe")
 
 public:
-    Cafe(Component *decorated = nullptr);
+    Cafe();
     QString preparar();
     Decorator *clone();
 

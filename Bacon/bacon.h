@@ -13,7 +13,7 @@ class BACONSHARED_EXPORT Bacon : public Decorator
     Q_PLUGIN_METADATA(IID "org.qt-project.bacon.Bacon")
 
 public:
-    Bacon(Component *decorated = nullptr);
+    Bacon();
     QString preparar();
     Decorator *clone();
 
